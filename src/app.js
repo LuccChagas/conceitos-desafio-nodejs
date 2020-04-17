@@ -17,9 +17,9 @@ app.get("/repositories", (request, response) => {
 });
 
 app.post("/repositories", (request, response) => {
-  const { title, url, techs, likes } = request.body
+  const { title, url, techs } = request.body
 
-  const repo = {id: uuid(), title, url, techs, likes}
+  const repo = {id: uuid(), title, url, techs, likes : 0}
 
   repositories.push(repo);
   
@@ -55,7 +55,7 @@ app.delete("/repositories/:id", (req, res) => {
     return res.status(400).json({ "error": "This ID value is invalid"});
   }
 
-  repositories.splice(repositories[findById], 1);
+  repositories.splice(findById, 1);
 
   return res.status(204).send();
 
